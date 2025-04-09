@@ -1,70 +1,211 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Baba Book Store.
+✨ Jahan har reader ke liye ek kahani hai... aur har kahani ke liye ek reader. ✨
 
-## Available Scripts
+Aao Ek Kahani Sunte Hain...
+Maine ek Bookstore khola.
+Lekin yeh sirf ek jagah nahi hai — yeh ek mehsoos karne wali duniya hai.
 
-In the project directory, you can run:
+Aaiye, books dekhiye…
+Apni manpasand kitaabein khojiye…
+Aur miliye ek aise saathi se jo aapse poochhega —
 
-### `npm start`
+"Aaj ka mood kaisa hai?"
+Aur phir aapke mood ke hisaab se books suggest karega.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Aap usse kisi bhi book ki summary pooch sakte ho —
+Padhiye, samajhiye… aur tabhi decide kijiye:
+📚 "Kya yeh kitaab mere safar ke laayak hai?"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Agar aapko kitaab pasand aaye, aur aap khareedna chahein,
+to bas ek chhoti si baat —
+Register kijiye, Login kariye,
+aur ban jaaiye humare digital bookstore ke member.
 
-### `npm test`
+🛒 Shopping Made Simple
+📥 Apni pasand ki kitaabein Cart mein daaliye.
+🔍 Cart me jaake check kariye — kya kya chuna hai aapne.
+❌ Koi kitaab hatani ho? Easy. Ek click mein remove.
+💖 Aur agar abhi nahi lena — lekin future me soch rahe ho?
+To uske liye hai Wishlist — save for later option.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🔮 Aur Ab Jaldi Hi... AI ka Jadoo
+Hum is kahani mein ek nayi twist laane wale hain —
+Ek aisi AI jo sirf suggest nahi karegi,
+balki samjhegi bhi —
+Aapke mood ko, padhne ki aadat ko, aur recommend karegi wahi kitaabein jo aapko inspire kar sakein.
 
-### `npm run build`
+Yeh hai hamara chhota sa, pyara sa — Baba Book Store.
+✨ Jahan har reader ke liye ek kahani hai... aur har kahani ke liye ek reader. ✨
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+..............................................................................
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🎭 Mood-Based Book Suggestions
+😔 Sad
+Mood uplift + emotional healing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Alchemist – Paulo Coelho
 
-### `npm run eject`
+Tuesdays with Morrie – Mitch Albom
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Ikigai – Héctor García
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You Can Heal Your Life – Louise Hay
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Man’s Search for Meaning – Viktor E. Frankl
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+😄 Happy
+Celebrate your vibe
 
-## Learn More
+The Rosie Project – Graeme Simsion
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Eleanor Oliphant is Completely Fine – Gail Honeyman
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Harry Potter Series – J.K. Rowling
 
-### Code Splitting
+The Hitchhiker’s Guide to the Galaxy – Douglas Adams
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Anne of Green Gables – L.M. Montgomery
 
-### Analyzing the Bundle Size
+😡 Angry
+Calm your inner storm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The Power of Now – Eckhart Tolle
 
-### Making a Progressive Web App
+The Untethered Soul – Michael A. Singer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The Art of Happiness – Dalai Lama
 
-### Advanced Configuration
+The Four Agreements – Don Miguel Ruiz
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Meditations – Marcus Aurelius
 
-### Deployment
+😴 Tired / Drained
+Soft, soothing, short reads
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The Little Prince – Antoine de Saint-Exupéry
 
-### `npm run build` fails to minify
+Milk and Honey – Rupi Kaur
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Good Vibes, Good Life – Vex King
+
+Zen: The Art of Simple Living – Shunmyo Masuno
+
+The Book of Joy – Dalai Lama & Desmond Tutu
+
+🤯 Overwhelmed
+Mental clarity + light fiction
+
+Essentialism – Greg McKeown
+
+Atomic Habits – James Clear
+
+Big Magic – Elizabeth Gilbert
+
+The Subtle Art of Not Giving a F\*\* \* – Mark Manson
+
+Everything is F\*_ed_ – Mark Manson
+
+🥱 Bored
+Books that grip you instantly
+
+Gone Girl – Gillian Flynn
+
+The Girl on the Train – Paula Hawkins
+
+The Da Vinci Code – Dan Brown
+
+The Silent Patient – Alex Michaelides
+
+Dark Matter – Blake Crouch
+
+😍 In Love
+For hopeless romantics
+
+Me Before You – Jojo Moyes
+
+It Ends With Us – Colleen Hoover
+
+The Fault in Our Stars – John Green
+
+P.S. I Love You – Cecelia Ahern
+
+The Notebook – Nicholas Sparks
+
+💔 Heartbroken
+For healing & feeling
+
+Tiny Beautiful Things – Cheryl Strayed
+
+Eat, Pray, Love – Elizabeth Gilbert
+
+Maybe You Should Talk to Someone – Lori Gottlieb
+
+Love for Imperfect Things – Haemin Sunim
+
+A Man Called Ove – Fredrik Backman
+
+😌 Calm / Peaceful
+Slow-paced, introspective reads
+
+The Book Thief – Markus Zusak
+
+Siddhartha – Hermann Hesse
+
+The Tao of Pooh – Benjamin Hoff
+
+The Prophet – Kahlil Gibran
+
+A New Earth – Eckhart Tolle
+
+🎯 Focused / Motivated
+For growth & ambition
+
+Deep Work – Cal Newport
+
+Can’t Hurt Me – David Goggins
+
+Grit – Angela Duckworth
+
+Think and Grow Rich – Napoleon Hill
+
+Start With Why – Simon Sinek
+
+😶‍🌫️ Lost / Confused
+Books that bring clarity & purpose
+
+The Midnight Library – Matt Haig
+
+Who Moved My Cheese? – Spencer Johnson
+
+The Mountain Is You – Brianna Wiest
+
+Untamed – Glennon Doyle
+
+When Things Fall Apart – Pema Chödrön
+
+🧠 Curious
+Feed your wonder
+
+Sapiens – Yuval Noah Harari
+
+Brief Answers to the Big Questions – Stephen Hawking
+
+A Short History of Nearly Everything – Bill Bryson
+
+Astrophysics for People in a Hurry – Neil deGrasse Tyson
+
+Homo Deus – Yuval Noah Harari
+
+........................................................
+
+🌟 Baba Book Store AI Features:
+
+1. Mood-based Book Suggestions
+   → Pass user's mood like "happy" or "romantic"
+   → Gemini responds with curated book recommendations for that mood.
+
+2. Book Summary Generator
+   → Pass a book title or description
+   → Gemini responds with a crisp summary.

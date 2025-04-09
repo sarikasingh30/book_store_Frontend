@@ -117,7 +117,7 @@ export function Navbar() {
     >
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
-          position="static"
+          position="fixed"
           sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
         >
           <Toolbar>
