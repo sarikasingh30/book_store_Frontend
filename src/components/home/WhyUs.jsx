@@ -21,7 +21,7 @@ const features = [
   },
 ];
 
-const MotionPaper = motion(Paper);
+const MotionPaper =motion.create(Paper)
 
 const WhyUs = () => {
   return (

@@ -23,7 +23,7 @@ export default function AllBooks() {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ my: 4 }}>
+    <Container maxWidth="lg" sx={{ my: 4 ,p: 2}}>
       <Box mb={4}>
         <TextField
           fullWidth

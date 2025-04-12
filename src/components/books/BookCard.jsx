@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 
 export default function BookCard({ book }) {
+  
   return (
     <>
       <Grid item xs={12} sm={6} md={4}>
@@ -25,12 +26,15 @@ export default function BookCard({ book }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            
           >
             <Card
               sx={{
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                borderRadius: "20px",
+                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
               }}
             >
               <CardMedia
@@ -52,9 +56,11 @@ export default function BookCard({ book }) {
                     {book?.title}
                   </Typography>
                   {/* Summary Icon */}
+                  <Box>
                   <Tooltip title="🤖 Wanna know more? I'm here!...">
                     <IconButton
                       sx={{
+                      
                         border: "1px solid",
                         borderColor: "divider",
                         p: "2",
@@ -71,6 +77,7 @@ export default function BookCard({ book }) {
                       <SmartToyIcon />
                     </IconButton>
                   </Tooltip>
+                  </Box>
                 </Box>
                 <Box
                   mt={1}

@@ -14,7 +14,7 @@ const HeroSection = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       sx={{
-        height: "90vh",
+        p:4,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -26,7 +26,6 @@ const HeroSection = () => {
             : "radial-gradient(circle, rgba(251,199,222,1) 0%, rgba(144,195,255,0.6862394616049545) 100%)",
 
         color: "black",
-        p: 2,
       }}
     >
       <motion.img
@@ -36,7 +35,7 @@ const HeroSection = () => {
         src={logomine}
         alt="logo"
         style={{ width: "150px", height: "150px", borderRadius: "10%" }}
-        sx={{ my: 2 }}
+        sx={{ my: 4 ,p:3}}
       />
 
       <Typography
@@ -45,7 +44,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        sx={{ mb: 2, fontWeight: "bold" }}
+        sx={{ mb: 1, fontWeight: "bold" }}
       >
         Baba Book Store
       </Typography>
@@ -56,12 +55,12 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.6 }}
-        sx={{ mb: 4 }}
+        sx={{ mb:2}}
       >
         Discover books that match your mood 💡📚
       </Typography>
 
-      <Box display="flex" gap={2} p={3}>
+      <Box display="flex" gap={2} p={4}>
         <Button
           variant="contained"
           color="primary"
@@ -100,7 +99,7 @@ const HeroSection = () => {
           sx={{
             color: (theme) =>
               theme.palette.mode === "dark" ? "black" : "#303f9f",
-            fontWeight: "bold",
+            fontWeight: "bold", p:3
           }}
         >
           ✨ Jahan har reader ke liye ek kahani hai... aur har kahani ke liye ek
