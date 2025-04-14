@@ -22,7 +22,7 @@ const SingleBook = () => {
   if (!bookDetail) return <Typography>Book not found</Typography>;
 
   return (
-    <Container sx={{ my: 4}}>
+    <Container sx={{ my: 4 }}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -54,9 +54,13 @@ const SingleBook = () => {
         </Box>
       </motion.div>
       {/* 📘 Summary Modal ............................................................................*/}
-      <SummaryModal setShowSummary={setShowSummary} showSummary={showSummary} title={bookDetail.title}
-  author={bookDetail.author}
-  publishedYear={bookDetail.publishedYear}/>
+      <SummaryModal
+        setShowSummary={setShowSummary}
+        showSummary={showSummary}
+        title={bookDetail.title}
+        author={bookDetail.author}
+        publishedYear={bookDetail.publishedYear}
+      />
     </Container>
   );
 };

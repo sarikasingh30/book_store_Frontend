@@ -84,10 +84,10 @@ export function Footer() {
               justifyContent="center"
               alignItems="flex-start"
             >
-              {[1, 2, 3].map((i) => (
+              {["Home","Navigation"].map((i) => (
                 <Stack key={i} spacing={1}>
                   <Typography variant="subtitle1" fontWeight="bold">
-                    Section {i}
+                    {i}
                   </Typography>
                   <Typography variant="body2">Link 1</Typography>
                   <Typography variant="body2">Link 2</Typography>

@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import { motion } from "framer-motion";
 
-import {Box,Toolbar,IconButton, Typography, Badge, MenuItem, Menu}from "@mui/material";
+import {
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Badge,
+  MenuItem,
+  Menu,
+  CircularProgress,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import logoP from "../../assets/bookStore-logo.png";
@@ -10,14 +19,34 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ThemeToggle from "../../ThemeToggle";
+import { AuthContext } from "../../context/AuthContext";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from '@mui/icons-material/Login';
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 export function Navbar() {
+  const { user, setUser,loading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  // console.log(user);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const handleLogout = async () => {
+    try {
+      await axios.get("http://localhost:3030/logout", {
+        withCredentials: true,
+      });
+      setUser(null);
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -28,6 +57,7 @@ export function Navbar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+
     handleMobileMenuClose();
   };
 
@@ -52,8 +82,25 @@ export function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("/profile")
+          handleMenuClose();
+          
+        }}
+      >
+        <AccountCircle />
+        Profile
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose();
+          handleLogout();
+        }}
+      >
+        <LogoutIcon />
+        Logout
+      </MenuItem>
     </Menu>
   );
 
@@ -102,13 +149,14 @@ export function Navbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {user ? <AccountCircle /> : <LoginIcon />}
         </IconButton>
-        <p>Profile</p>
+        <p>User</p>
       </MenuItem>
     </Menu>
   );
 
+  if (loading) return <CircularProgress/>;
   return (
     <motion.div
       initial={{ y: -100, opacity: 0 }}
@@ -118,8 +166,11 @@ export function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="fixed"
-          sx={{ backgroundColor: (theme) => theme.palette.primary.main , width: "100%",
-            overflowX: "hidden"}}
+          sx={{
+            backgroundColor: (theme) => theme.palette.primary.main,
+            width: "100%",
+            overflowX: "hidden",
+          }}
         >
           <Toolbar>
             <IconButton
@@ -152,10 +203,11 @@ export function Navbar() {
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
+            {user&&(
+              <Typography variant="body1" sx={{p:2}}>{user.provider==="local"?`Welcome ${user.email}`:`Welcome ${user.username}`}</Typography>
+            )}
             <ThemeToggle />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              
-
               <IconButton
                 size="large"
                 aria-label="show 6 new mails"
@@ -174,18 +226,23 @@ export function Navbar() {
                   <FavoriteIcon />
                 </Badge>
               </IconButton>
-
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              {user ? (
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  sx={{ color: "white" }}
+                >
+                  <AccountCircle />
+                </IconButton>
+              ) : (
+                <IconButton onClick={() => navigate("/login")}>
+                  <LoginIcon sx={{ color: "white" }}/>
+                </IconButton>
+              )}
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
