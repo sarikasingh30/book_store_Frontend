@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // ✅ start with true
-
+  const [refreshCounts, setRefreshCounts] = useState(false); 
   // Auth check
   const checkAuth = async () => {
     try {
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
+    <AuthContext.Provider value={{ user, setUser, loading,refreshCounts,setRefreshCounts }}>
       {children}
     </AuthContext.Provider>
   );

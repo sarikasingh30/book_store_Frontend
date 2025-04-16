@@ -9,16 +9,17 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const FeaturedBooks = () => {
   const [topBooks, setTopBooks] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchTopBooks = async () => {
       try {
         await axios("http://localhost:3030/books/top-rated")
-        .then((res) => setTopBooks(res.data))
-        .catch((err) => console.error("Failed to fetch books", err));
+          .then((res) => setTopBooks(res.data))
+          .catch((err) => console.error("Failed to fetch books", err));
       } catch (err) {
         console.error("Failed to fetch top-rated books", err);
       }
@@ -27,19 +28,21 @@ const FeaturedBooks = () => {
     fetchTopBooks();
   }, []);
   return (
-    <Box sx={{ px: 3, py: 6 }}>
+    <Box sx={{ px: 3, py: 4}}>
       <Typography
         variant="h4"
         fontWeight="bold"
         mb={4}
         textAlign="center"
-         sx={{color:(theme)=>theme.palette.mode === "dark"?"#fff":"#303f9f" }}
+        sx={{
+          color: (theme) =>
+            theme.palette.mode === "dark" ? "#fff" : "#303f9f",
+        }}
       >
         🛍️ Popular Picks at Our Store 📚
       </Typography>
 
-      <Box sx={{ display: "flex", justifyContent: "center" ,mt:"4"}}>
-        
+      <Box sx={{ display: "flex", justifyContent: "center", my: "4" }}>
         <Box
           sx={{
             display: "flex",
@@ -47,6 +50,7 @@ const FeaturedBooks = () => {
             gap: 3,
             pb: 1,
             px: 1,
+            mb:2,
             maxWidth: "1200px",
             width: "100%",
             scrollBehavior: "smooth",
@@ -74,7 +78,10 @@ const FeaturedBooks = () => {
                   height="280"
                   image={book.coverImage.url}
                   alt={book.title}
-                  sx={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
+                  sx={{
+                    borderTopLeftRadius: "20px",
+                    borderTopRightRadius: "20px",
+                  }}
                 />
                 <CardContent sx={{ textAlign: "center" }}>
                   <Typography variant="h6" fontWeight="bold">
@@ -83,19 +90,36 @@ const FeaturedBooks = () => {
                   <Typography variant="subtitle2" color="text.secondary">
                     by {book.author}
                   </Typography>
-                 <Link to={`/books/${book._id}`}> <Button
-                    size="small"
-                    sx={{ mt: 1 }}
-                    variant="contained"
-                    color="primary"
-                  >
-                    View Details
-                  </Button></Link>
+                  <Link to={`/books/${book._id}`}>
+                    {" "}
+                    <Button
+                      size="small"
+                      sx={{ mt: 1 }}
+                      variant="contained"
+                      color="primary"
+                    >
+                      View Details
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </Box>
+      </Box>
+      <Box sx={{display: "flex", justifyContent: "center"}}>
+        {" "}
+        <Button
+          variant="contained"
+          color="primary"
+          component={motion.button}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          sx={{p:"4"}}
+          onClick={() => navigate("/books")}
+        >
+          Explore More
+        </Button>
       </Box>
     </Box>
   );

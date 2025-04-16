@@ -15,7 +15,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 
+
 export default function BookCard({ book }) {
+ 
   
   return (
     <>

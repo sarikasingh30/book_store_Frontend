@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Container, Typography, Box } from "@mui/material";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -9,6 +9,8 @@ import AIModel from "../components/books/AIModel";
 import SummaryModal from "../components/modals/SummaryModal";
 
 const SingleBook = () => {
+
+
   const { id } = useParams();
   const [bookDetail, setBookDetail] = useState();
   const [showSummary, setShowSummary] = useState(false);
@@ -57,6 +59,7 @@ const SingleBook = () => {
       <SummaryModal
         setShowSummary={setShowSummary}
         showSummary={showSummary}
+        id={bookDetail._id}
         title={bookDetail.title}
         author={bookDetail.author}
         publishedYear={bookDetail.publishedYear}

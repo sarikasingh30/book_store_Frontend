@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Typography,
   Box,
@@ -10,8 +10,35 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-export default function BookInfo({bookDetail,setShowSummary}) {
-    
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useNavigate } from "react-router";
+
+export default function BookInfo({ bookDetail, setShowSummary }) {
+  const { user, setRefreshCounts } = useContext(AuthContext);
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const navigate = useNavigate();
+
+  const addProduct = async (bookId, quantity, val) => {
+    await axios.post(`http://localhost:3030/cw/${user.id}/${val}`, {
+      bookId,
+      quantity,
+    });
+    if (val === "wishlist") {
+      setIsInWishlist(true);
+    }
+
+    setRefreshCounts((prev) => !prev);
+  };
+
+  const handleBuyNow = (Bid) => {
+    addProduct(Bid, 1, "cart");
+    navigate(`/cart/${user?.id}`);
+  };
+
+  
   return (
     <>
       <Box
@@ -130,10 +157,11 @@ export default function BookInfo({bookDetail,setShowSummary}) {
           />
         </Box>
 
-        <Box mt={4} display="flex" gap={2}>
+        <Box mt={4} display="flex" justifyContent={"space-around"} gap={2}>
           <motion.div whileTap={{ scale: 0.95 }}>
             <Button
               variant="contained"
+              onClick={() => handleBuyNow(bookDetail._id)}
               disabled={!bookDetail.isAvailable}
               sx={{
                 bgcolor: "primary.main",
@@ -154,6 +182,7 @@ export default function BookInfo({bookDetail,setShowSummary}) {
           <motion.div whileTap={{ scale: 0.95 }}>
             <Button
               variant="contained"
+              onClick={() => addProduct(bookDetail._id, 1, "cart")}
               disabled={!bookDetail.isAvailable}
               sx={{
                 bgcolor: "primary.main",
@@ -169,6 +198,22 @@ export default function BookInfo({bookDetail,setShowSummary}) {
             >
               Add to Cart
             </Button>
+          </motion.div>
+
+          <motion.div whileTap={{ scale: 0.95 }}>
+            <IconButton
+              variant="contained"
+              onClick={() => addProduct(bookDetail._id, 1, "wishlist")}
+              sx={{
+                bgcolor: isInWishlist ? "error.main" : "primary.main",
+                color: "white",
+                "&:hover": {
+                  bgcolor: isInWishlist ? "error.dark" : "primary.dark",
+                },
+              }}
+            >
+              {isInWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
           </motion.div>
         </Box>
       </Box>

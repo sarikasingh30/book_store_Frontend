@@ -10,18 +10,18 @@ import {
 
 import axios from "axios";
 export default function SummaryModal(props) {
-  const { setShowSummary, showSummary, title, author, publishedYear } = props;
+  const { setShowSummary, showSummary,id, title, author, publishedYear } = props;
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (showSummary) {
       setLoading(true);
       axios
-        .post(`http://localhost:3030/api/summary`, {
+        .post(`http://localhost:3030/api/summary`, {id,
           title,
           author,
           publishedYear,
-        }) // replace with your actual summary endpoint
+        }) 
         .then((res) => {
           setSummary(res.data.summary || "No summary available.");
           setLoading(false);
@@ -32,7 +32,7 @@ export default function SummaryModal(props) {
           setLoading(false);
         });
     }
-  }, [showSummary, author, title, publishedYear]);
+  }, [showSummary, author, title, publishedYear,id]);
   return (
     <>
  

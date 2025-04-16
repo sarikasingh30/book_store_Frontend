@@ -78,7 +78,12 @@ const HeroSection = () => {
           component={motion.button}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/mood-suggestion")}
+          onClick={() => {
+            const moodSection = document.getElementById("mood");
+            if (moodSection) {
+              moodSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
           Suggest by Mood
         </Button>

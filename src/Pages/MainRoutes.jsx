@@ -8,6 +8,8 @@ import { ProtectedRoute, PublicRoute } from '../components/auth/AuthRoute'
 import Login from './Login'
 import Register from './Register'
 import Profile from './Profile'
+import Cart from './Cart'
+import Wishlist from './Wishlist'
 
 function MainRoutes() {
   return (
@@ -40,8 +42,12 @@ function MainRoutes() {
               </ProtectedRoute>
           }
         />
+        <Route path="/cart/:userId" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
+        <Route path="/wishlist/:userId" element={<ProtectedRoute><Wishlist/></ProtectedRoute>} />
+
         <Route path="/books" element={<AllBooks/>} />
         <Route path="/books/:id" element={<SingleBook/>} />
+
         <Route path="*" element={<NotFound/>} />
     </Routes>
   )

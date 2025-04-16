@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
-import { motion } from "framer-motion";
+import {motion } from "framer-motion";
 
 import {
   Box,
@@ -11,9 +11,9 @@ import {
   MenuItem,
   Menu,
   CircularProgress,
+  useTheme,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-// import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import logoP from "../../assets/bookStore-logo.png";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -21,15 +21,30 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import ThemeToggle from "../../ThemeToggle";
 import { AuthContext } from "../../context/AuthContext";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LoginIcon from '@mui/icons-material/Login';
+import LoginIcon from "@mui/icons-material/Login";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function Navbar() {
-  const { user, setUser,loading } = useContext(AuthContext);
+  const { user, setUser, loading, refreshCounts } = useContext(AuthContext);
+  const [counts, setCounts] = useState({ cartCount: 0, wishlistCount: 0 });
   const navigate = useNavigate();
-  // console.log(user);
-
+  const theme = useTheme();
+  const iconTextColor = theme.palette.mode === "dark" ? "white" : "black";
+  useEffect(() => {
+    if (!user?.id) return;
+    const fetchSummary = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3030/cw/sum/${user.id}`);
+        setCounts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch summary:", err);
+      }
+    };
+  
+    fetchSummary();
+  }, [user?.id,refreshCounts]);
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -84,9 +99,8 @@ export function Navbar() {
     >
       <MenuItem
         onClick={() => {
-          navigate("/profile")
+          navigate("/profile");
           handleMenuClose();
-          
         }}
       >
         <AccountCircle />
@@ -120,34 +134,41 @@ export function Navbar() {
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-    >
+    >  
+      <Link to={`/cart/${user?.id}`} style={{ color: iconTextColor , textDecoration:"none"}}>
+
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+
+        <IconButton size="large" aria-label={`show ${counts.cartCount} items in Cart`} sx={{ color: iconTextColor }}>
+          <Badge badgeContent={counts?.cartCount} color="error">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
         <p>Cart</p>
       </MenuItem>
+</Link>
+
+<Link to={`/wishlist/${user?.id}`} style={{ color: iconTextColor , textDecoration:"none"}}>
+
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+          aria-label={`show ${counts.wishlistCount} items in Wishlist`}
+          sx={{ color: iconTextColor }}
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={counts?.wishlistCount} color="error">
             <FavoriteIcon />
           </Badge>
         </IconButton>
         <p>Wishlist</p>
-      </MenuItem>
+      </MenuItem></Link>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          sx={{ color: iconTextColor }}
         >
           {user ? <AccountCircle /> : <LoginIcon />}
         </IconButton>
@@ -156,7 +177,7 @@ export function Navbar() {
     </Menu>
   );
 
-  if (loading) return <CircularProgress/>;
+  if (loading) return <CircularProgress />;
   return (
     <motion.div
       initial={{ y: -100, opacity: 0 }}
@@ -173,26 +194,28 @@ export function Navbar() {
           }}
         >
           <Toolbar>
-            <IconButton
-              sx={{
-                width: `60px`,
-                height: "60px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-              }}
-            >
-              {/* <MenuIcon /> */}
-              <img
-                src={logoP}
-                alt="Placeholder"
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  borderRadius: "50%",
+            <Link to="/">
+              <IconButton
+                sx={{
+                  width: `60px`,
+                  height: "60px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "start",
                 }}
-              />
-            </IconButton>
+              >
+                {/* <MenuIcon /> */}
+                <img
+                  src={logoP}
+                  alt="Placeholder"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    borderRadius: "50%",
+                  }}
+                />
+              </IconButton>
+            </Link>
             <Typography
               variant="h5"
               noWrap
@@ -203,29 +226,44 @@ export function Navbar() {
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
-            {user&&(
-              <Typography variant="body1" sx={{p:2}}>{user.provider==="local"?`Welcome ${user.email}`:`Welcome ${user.username}`}</Typography>
+            {user && (
+              <Typography variant="body1" sx={{ p: 2 }}>
+                {user.provider === "local"
+                  ? `Welcome ${user.email}`
+                  : `Welcome ${user.username}`}
+              </Typography>
             )}
             <ThemeToggle />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link to={`/cart/${user?.id}`} style={{ color: "white" , textDecoration:"none"}}>
+
               <IconButton
                 size="large"
-                aria-label="show 6 new mails"
+                aria-label={`show ${counts.cartCount} items in Cart`}
                 color="inherit"
               >
-                <Badge badgeContent={8} color="error">
-                  <ShoppingCartIcon />
+
+                <Badge badgeContent={`${counts.cartCount}`} color="error">
+                  
+                    <ShoppingCartIcon />
                 </Badge>
+                
+
               </IconButton>
+              </Link>
+
+<Link to={`/wishlist/${user?.id}`} style={{ color: "white", textDecoration:"none"}}>
+
               <IconButton
                 size="large"
-                aria-label="show 17 new notifications"
+                aria-label={`show ${counts.wishlistCount} items in Wishlist`}
                 color="inherit"
               >
-                <Badge badgeContent={17} color="error">
+                <Badge badgeContent={`${counts.wishlistCount}`} color="error">
                   <FavoriteIcon />
                 </Badge>
               </IconButton>
+              </Link>
               {user ? (
                 <IconButton
                   size="large"
@@ -240,7 +278,7 @@ export function Navbar() {
                 </IconButton>
               ) : (
                 <IconButton onClick={() => navigate("/login")}>
-                  <LoginIcon sx={{ color: "white" }}/>
+                  <LoginIcon sx={{ color: "white" }} />
                 </IconButton>
               )}
             </Box>

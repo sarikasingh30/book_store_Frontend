@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 import MoodModal from "../modals/MoodModal";
+import { useNavigate } from "react-router";
 
 const moods = [
   { emoji: "😄", label: "Happy" },
@@ -23,7 +24,7 @@ const MoodDiscovery = () => {
   const [open, setOpen] = useState(false);
   const [selectedMood, setSelectedMood] = useState(null);
     const [loading, setLoading] = useState(false);
-  
+  const navigate=useNavigate()
   const [moodBooks, setMoodBooks] = useState([]);
 
   const handleMoodClick = (mood) => {
@@ -46,12 +47,12 @@ const MoodDiscovery = () => {
   };
 
   return (
-    <Box sx={{ textAlign: "center", px: 4, py: 8, backgroundColor: "#f4f4f8" }}>
+    <Box id="mood" sx={{ textAlign: "center", px:4, py:8, backgroundColor: "#f4f4f8" }}>
       <Typography variant="h4" fontWeight="bold" mb={4} color="primary">
         🎭 Mood-based Book Discovery 📚
       </Typography>
 
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, justifyContent: "center" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, justifyContent: "center", alignItems:"center" ,mb:"3"}}>
         {moods.map((mood, index) => (
           <motion.div
             key={index}
@@ -81,12 +82,12 @@ const MoodDiscovery = () => {
           </motion.div>
         ))}
       </Box>
-
+    
       {/* Mood Modal */}
     
           <MoodModal selectedMood={selectedMood} moodBooks={moodBooks} handleClose={handleClose} open={open} loading={loading}/>
         
-    
+           
     </Box>
   );
 };

@@ -99,6 +99,8 @@ const Login = () => {
                     label="Email"
                     type="email"
                     variant="outlined"
+                    sx={{color: (theme) =>
+                      theme.palette.mode === "dark" ? "#fff" : "#303f9f",}}
                     fullWidth
                     margin="normal"
                     required
@@ -111,6 +113,8 @@ const Login = () => {
                     variant="outlined"
                     fullWidth
                     margin="normal"
+                    sx={{color: (theme) =>
+                      theme.palette.mode === "dark" ? "#fff" : "#303f9f",}}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
