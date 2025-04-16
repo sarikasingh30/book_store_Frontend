@@ -1,6 +1,6 @@
 
     import React, { useContext } from "react";
-    import { Avatar, Box, Grid, Paper, Typography, Chip } from "@mui/material";
+    import { Avatar, Box, Paper, Typography, Chip } from "@mui/material";
 import { AuthContext } from "../context/AuthContext";
 import userIcon from "../assets/usericon.webp"
     import { motion } from "framer-motion";

@@ -25,7 +25,7 @@ const Cart = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const fetchCart = useCallback(async () => {
-    const res = await axios.get(`http://localhost:3030/cw/${userId}/cart`);
+    const res = await axios.get(`https://book-store-ozfo.onrender.com/cw/${userId}/cart`);
     setCart(res.data?.items || []);
   }, [userId]);
 
@@ -34,7 +34,7 @@ const Cart = () => {
   }, [fetchCart]);
 
   const updateQuantity = async (bookId, quantity) => {
-    await axios.put(`http://localhost:3030/cw/${userId}/cart`, {
+    await axios.put(`https://book-store-ozfo.onrender.com/cw/${userId}/cart`, {
       bookId,
       quantity,
     });
@@ -43,7 +43,7 @@ const Cart = () => {
   };
 
   const removeItem = async (val) => {
-    await axios.delete(`http://localhost:3030/cw/${userId}/cart`, {
+    await axios.delete(`https://book-store-ozfo.onrender.com/cw/${userId}/cart`, {
       data: { bookId: val },
     });
     setRefreshCounts((prev) => !prev);
@@ -52,7 +52,7 @@ const Cart = () => {
   const moveToWishlist = async (bookId) => {
     let fromType = "cart";
     let toType = "wishlist";
-    await axios.put(`http://localhost:3030/cw/move`, {
+    await axios.put(`https://book-store-ozfo.onrender.com/cw/move`, {
       userId,
       bookId,
       fromType,

@@ -24,7 +24,7 @@ const Wishlist = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const fetchWishlist = useCallback(async () => {
-    const res = await axios.get(`http://localhost:3030/cw/${userId}/wishlist`);
+    const res = await axios.get(`https://book-store-ozfo.onrender.com/cw/${userId}/wishlist`);
     setCart(res.data?.items || []);
   }, [userId]);
 
@@ -33,7 +33,7 @@ const Wishlist = () => {
   }, [fetchWishlist]);
 
   const removeItem = async (val) => {
-    await axios.delete(`http://localhost:3030/cw/${userId}/wishlist`, {
+    await axios.delete(`https://book-store-ozfo.onrender.com/cw/${userId}/wishlist`, {
       data: { bookId: val },
     });
     setRefreshCounts((prev) => !prev);
@@ -42,7 +42,7 @@ const Wishlist = () => {
   const moveToWishlist = async (bookId) => {
     let fromType = "wishlist";
     let toType = "cart";
-    await axios.put(`http://localhost:3030/cw/move`, {
+    await axios.put(`https://book-store-ozfo.onrender.com/cw/move`, {
       userId,
       bookId,
       fromType,

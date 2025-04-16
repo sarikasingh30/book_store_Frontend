@@ -35,7 +35,7 @@ export function Navbar() {
     if (!user?.id) return;
     const fetchSummary = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/cw/sum/${user.id}`);
+        const res = await axios.get(`https://book-store-ozfo.onrender.com/cw/sum/${user.id}`);
         setCounts(res.data);
       } catch (err) {
         console.error("Failed to fetch summary:", err);
@@ -53,7 +53,7 @@ export function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3030/logout", {
+      await axios.get("https://book-store-ozfo.onrender.com/logout", {
         withCredentials: true,
       });
       setUser(null);

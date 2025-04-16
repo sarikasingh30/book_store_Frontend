@@ -6,7 +6,7 @@ import {
   Typography,
   Paper,
   Container,
-  Divider,
+
   Stack,
   CircularProgress,
 } from "@mui/material";
@@ -34,7 +34,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3030/register",
+        "https://book-store-ozfo.onrender.com/register",
         { username, email, password },
         { withCredentials: true }
       );

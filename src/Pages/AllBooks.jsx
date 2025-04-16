@@ -10,7 +10,7 @@ export default function AllBooks() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios("http://localhost:3030/books")
+    axios("https://book-store-ozfo.onrender.com/books")
       .then((res) => setBooks(res.data))
       .catch((err) => console.error("Failed to fetch books", err));
   }, []);

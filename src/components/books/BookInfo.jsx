@@ -22,7 +22,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
   const navigate = useNavigate();
 
   const addProduct = async (bookId, quantity, val) => {
-    await axios.post(`http://localhost:3030/cw/${user.id}/${val}`, {
+    await axios.post(`https://book-store-ozfo.onrender.com/cw/${user.id}/${val}`, {
       bookId,
       quantity,
     });
@@ -38,7 +38,8 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
     navigate(`/cart/${user?.id}`);
   };
 
-  
+  const isLoggedIn = !!user?.id; 
+
   return (
     <>
       <Box
@@ -84,6 +85,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
                 boxShadow: 2,
                 transition: "all 0.3s ease-in-out",
               }}
+              disabled={!isLoggedIn}
             >
               <SmartToyIcon />
             </IconButton>
@@ -162,7 +164,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
             <Button
               variant="contained"
               onClick={() => handleBuyNow(bookDetail._id)}
-              disabled={!bookDetail.isAvailable}
+              disabled={!bookDetail.isAvailable||!isLoggedIn}
               sx={{
                 bgcolor: "primary.main",
                 color: "white",
@@ -183,7 +185,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
             <Button
               variant="contained"
               onClick={() => addProduct(bookDetail._id, 1, "cart")}
-              disabled={!bookDetail.isAvailable}
+              disabled={!bookDetail.isAvailable||!isLoggedIn}
               sx={{
                 bgcolor: "primary.main",
                 color: "white",
@@ -211,6 +213,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
                   bgcolor: isInWishlist ? "error.dark" : "primary.dark",
                 },
               }}
+              disabled={!isLoggedIn}
             >
               {isInWishlist ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>

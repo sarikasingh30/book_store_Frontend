@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Auth check
   const checkAuth = async () => {
     try {
-      const res = await axios.get("http://localhost:3030/api/check-auth", {
+      const res = await axios.get("https://book-store-ozfo.onrender.com/api/check-auth", {
         withCredentials: true,
       });
       setUser(res.data.user);

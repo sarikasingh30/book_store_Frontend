@@ -17,7 +17,7 @@ export default function SummaryModal(props) {
     if (showSummary) {
       setLoading(true);
       axios
-        .post(`http://localhost:3030/api/summary`, {id,
+        .post(`https://book-store-ozfo.onrender.com/api/summary`, {id,
           title,
           author,
           publishedYear,

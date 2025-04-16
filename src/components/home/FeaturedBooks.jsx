@@ -17,7 +17,7 @@ const FeaturedBooks = () => {
   useEffect(() => {
     const fetchTopBooks = async () => {
       try {
-        await axios("http://localhost:3030/books/top-rated")
+        await axios("https://book-store-ozfo.onrender.com/books/top-rated")
           .then((res) => setTopBooks(res.data))
           .catch((err) => console.error("Failed to fetch books", err));
       } catch (err) {

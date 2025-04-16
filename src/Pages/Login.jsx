@@ -31,7 +31,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3030/login", {
+      const res = await axios.post("https://book-store-ozfo.onrender.com/login", {
         email,
         password,
       }, {
@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.open("http://localhost:3030/login/google", "_self");
+    window.open("https://book-store-ozfo.onrender.com/login/google", "_self");
   };
 
   if (loading) return <CircularProgress />;

@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 import MoodModal from "../modals/MoodModal";
-import { useNavigate } from "react-router";
 
 const moods = [
   { emoji: "😄", label: "Happy" },
@@ -24,7 +23,6 @@ const MoodDiscovery = () => {
   const [open, setOpen] = useState(false);
   const [selectedMood, setSelectedMood] = useState(null);
     const [loading, setLoading] = useState(false);
-  const navigate=useNavigate()
   const [moodBooks, setMoodBooks] = useState([]);
 
   const handleMoodClick = (mood) => {
@@ -33,7 +31,7 @@ const MoodDiscovery = () => {
     setLoading(true); 
 
     axios
-      .post("http://localhost:3030/api/mood", { mood: mood.label.toLowerCase() })
+      .post("https://book-store-ozfo.onrender.com/api/mood", { mood: mood.label.toLowerCase() })
       .then((res) =>setMoodBooks(res.data.books))
       .catch((err) => console.error("Failed to fetch books", err)).finally(()=>{
         setLoading(false)
