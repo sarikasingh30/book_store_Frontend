@@ -31,7 +31,7 @@ const MoodDiscovery = () => {
     setLoading(true); 
 
     axios
-      .post("https://book-store-ozfo.onrender.com/api/mood", { mood: mood.label.toLowerCase() })
+      .post("https://book-store-t37x.onrender.com/api/mood", { mood: mood.label.toLowerCase() })
       .then((res) =>setMoodBooks(res.data.books))
       .catch((err) => console.error("Failed to fetch books", err)).finally(()=>{
         setLoading(false)

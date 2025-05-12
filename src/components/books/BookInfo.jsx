@@ -22,7 +22,7 @@ export default function BookInfo({ bookDetail, setShowSummary }) {
   const navigate = useNavigate();
 
   const addProduct = async (bookId, quantity, val) => {
-    await axios.post(`https://book-store-ozfo.onrender.com/cw/${user.id}/${val}`, {
+    await axios.post(`https://book-store-t37x.onrender.com/cw/${user.id}/${val}`, {
       bookId,
       quantity,
     });

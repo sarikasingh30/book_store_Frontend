@@ -10,6 +10,7 @@ import Register from './Register'
 import Profile from './Profile'
 import Cart from './Cart'
 import Wishlist from './Wishlist'
+import DummyCheckout from '../components/DummyCheckout'
 
 function MainRoutes() {
   return (
@@ -44,6 +45,7 @@ function MainRoutes() {
         />
         <Route path="/cart/:userId" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
         <Route path="/wishlist/:userId" element={<ProtectedRoute><Wishlist/></ProtectedRoute>} />
+        <Route path="/checkout" element={<ProtectedRoute><DummyCheckout/></ProtectedRoute>} />
 
         <Route path="/books" element={<AllBooks/>} />
         <Route path="/books/:id" element={<SingleBook/>} />

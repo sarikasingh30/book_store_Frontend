@@ -16,7 +16,7 @@ const SingleBook = () => {
   const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
-    axios(`https://book-store-ozfo.onrender.com/books/${id}`)
+    axios(`https://book-store-t37x.onrender.com/books/${id}`)
       .then((res) => setBookDetail(res.data))
       .catch((err) => console.error("Failed to fetch books", err));
   }, [id]);

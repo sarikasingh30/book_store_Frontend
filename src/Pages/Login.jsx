@@ -31,7 +31,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://book-store-ozfo.onrender.com/login", {
+      const res = await axios.post("https://book-store-t37x.onrender.com/login", {
         email,
         password,
       }, {
@@ -46,7 +46,8 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.open("https://book-store-ozfo.onrender.com/login/google", "_self");
+    window.location.href = "https://book-store-t37x.onrender.com/login/google"
+    // window.open("https://book-store-t37x.onrender.com/login/google", "_self");
   };
 
   if (loading) return <CircularProgress />;
@@ -126,8 +127,8 @@ const Login = () => {
               </motion.div>
             </AnimatePresence>
 
-            <Divider sx={{ my: 3 }}>OR</Divider>
-
+            {/* <Divider sx={{ my: 3 }}>OR</Divider> */}
+{/* 
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Button
                 variant="contained"
@@ -142,7 +143,7 @@ const Login = () => {
               >
                 Login with Google
               </Button>
-            </motion.div>
+            </motion.div> */}
 
             {/* Toggle Button */}
             <Stack direction="row" justifyContent="center" mt={3}>

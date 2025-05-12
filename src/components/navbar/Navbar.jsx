@@ -35,7 +35,7 @@ export function Navbar() {
     if (!user?.id) return;
     const fetchSummary = async () => {
       try {
-        const res = await axios.get(`https://book-store-ozfo.onrender.com/cw/sum/${user.id}`);
+        const res = await axios.get(`https://book-store-t37x.onrender.com/cw/sum/${user.id}`);
         setCounts(res.data);
       } catch (err) {
         console.error("Failed to fetch summary:", err);
@@ -43,7 +43,7 @@ export function Navbar() {
     };
   
     fetchSummary();
-  }, [user?.id,refreshCounts]);
+  }, [user?.id,refreshCounts,setCounts]);
   
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -53,10 +53,11 @@ export function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("https://book-store-ozfo.onrender.com/logout", {
+      await axios.get("https://book-store-t37x.onrender.com/logout", {
         withCredentials: true,
       });
       setUser(null);
+      setCounts({ cartCount: 0, wishlistCount: 0 })
       navigate("/login");
     } catch (error) {
       console.error("Logout failed", error);
